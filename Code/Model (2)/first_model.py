@@ -9,13 +9,26 @@ nn_architecture = [
     {"input_dim": 4, "output_dim": 1, "activation": "sigmoid"},
 ]
 
-pfad = "Code/Data/trainingswerte.txt"
+
 
 
 model = init_layers(nn_architecture)
 
 
-with open(pfad, 'r') as fp:
-    lines = sum(1 for line in fp)
-    for i in range lines:
-        X = 
+
+X, Y = (gen_points(500))
+
+print(X.shape)
+print(Y.shape)
+
+X = X.T
+Y = Y.reshape(1, -1)
+print(X.shape)
+print(Y.shape)
+
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=1, learning_rate=0.01)
+
+with open("Code/Data/model.txt", "w") as f:
+    f.write(params)
+
+print("Die Genauigkeit ist:", accuracity)
