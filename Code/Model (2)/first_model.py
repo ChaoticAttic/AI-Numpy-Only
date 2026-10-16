@@ -1,14 +1,11 @@
 from main import train
 from main import init_layers
 from data_gen import gen_points
-nn_architecture = [
-    {"input_dim": 2, "output_dim": 4, "activation": "relu"},
-    {"input_dim": 4, "output_dim": 6, "activation": "relu"},
-    {"input_dim": 6, "output_dim": 6, "activation": "relu"},
-    {"input_dim": 6, "output_dim": 4, "activation": "relu"},
-    {"input_dim": 4, "output_dim": 1, "activation": "sigmoid"},
-]
+import numpy as np
+import json
 
+with open("architecture.json", "r") as f:
+    nn_architecture = json.load(f)
 
 
 
@@ -16,7 +13,7 @@ model = init_layers(nn_architecture)
 
 
 
-X, Y = (gen_points(500))
+X, Y = (gen_points(20000))
 
 print(X.shape)
 print(Y.shape)
@@ -26,9 +23,11 @@ Y = Y.reshape(1, -1)
 print(X.shape)
 print(Y.shape)
 
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=1, learning_rate=0.01)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=100, learning_rate=0.1)
 
-with open("Code/Data/model.txt", "w") as f:
-    f.write(params)
+#with open("Code/Data/model.txt", "w") as f:
+ #   f.write(str(params))
+
+np.save("params.npy", params)
 
 print("Die Genauigkeit ist:", accuracity)

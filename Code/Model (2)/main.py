@@ -1,12 +1,8 @@
 import numpy as np
+import json
 
-nn_architecture = [
-    {"input_dim": 2, "output_dim": 4, "activation": "relu"},
-    {"input_dim": 4, "output_dim": 6, "activation": "relu"},
-    {"input_dim": 6, "output_dim": 6, "activation": "relu"},
-    {"input_dim": 6, "output_dim": 4, "activation": "relu"},
-    {"input_dim": 4, "output_dim": 1, "activation": "sigmoid"},
-]
+with open("architecture.json", "r") as f:
+    nn_architecture = json.load(f)
 
 def init_layers(nn_architecture, seed = 99):
     np.random.seed(seed)
@@ -53,32 +49,22 @@ def single_layer_forward_propagation(A_prev, W_curr, b_curr, activation="relu"):
     return activation_func(Z_curr), Z_curr
 
 def full_forward_propagation(X, params_values, nn_architecture):
-
     memory = {}
-
     A_curr = X
-    memory["A0"] = X
-
+    
     for idx, layer in enumerate(nn_architecture):
-
         layer_idx = idx + 1
-
         A_prev = A_curr
-
+        
         activ_function_curr = layer["activation"]
-
         W_curr = params_values["W" + str(layer_idx)]
         b_curr = params_values["b" + str(layer_idx)]
-
-        A_curr, Z_curr = single_layer_forward_propagation(
-            A_prev,
-            W_curr,
-            b_curr,
-            activ_function_curr
-        )
-
-        memory["A" + str(layer_idx)] = A_curr
+        A_curr, Z_curr = single_layer_forward_propagation(A_prev, W_curr, b_curr, activ_function_curr)
+        
+        memory["A" + str(idx)] = A_prev
         memory["Z" + str(layer_idx)] = Z_curr
+       
+    return A_curr, memory
 
     return A_curr, memory
 
@@ -86,6 +72,9 @@ def get_cost_value(Y_hat, Y):
     m = Y_hat.shape[1]
     cost = -1 / m * (np.dot(Y, np.log(Y_hat).T) + np.dot(1 - Y, np.log(1 - Y_hat).T))
     return np.squeeze(cost)
+
+def convert_prob_into_class(Y_hat):
+    return (Y_hat >= 0.5).astype(int)
 
 def get_accuracy_value(Y_hat, Y):
     Y_hat_ = convert_prob_into_class(Y_hat)
@@ -135,7 +124,8 @@ def full_backward_propagation(Y_hat, Y, memory, params_values, nn_architecture):
     return grads_values
 
 def update(params_values, grads_values, nn_architecture, learning_rate):
-    for layer_idx, layer in enumerate(nn_architecture):
+    for idx, layer in enumerate(nn_architecture):
+        layer_idx = idx + 1
         params_values["W" + str(layer_idx)] -= learning_rate * grads_values["dW" + str(layer_idx)]        
         params_values["b" + str(layer_idx)] -= learning_rate * grads_values["db" + str(layer_idx)]
 
