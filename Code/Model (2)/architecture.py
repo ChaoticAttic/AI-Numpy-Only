@@ -9,8 +9,9 @@ import json
 #]
 
 nn_architecture = [
-    {"input_dim": 2, "output_dim": 4, "activation": "relu"},
-    {"input_dim": 4, "output_dim": 1, "activation": "sigmoid"},
+    {"input_dim": 2, "output_dim": 16, "activation": "relu"},
+    {"input_dim": 16, "output_dim": 16, "activation": "relu"},
+    {"input_dim": 16, "output_dim": 1, "activation": "sigmoid"},
 ]
 
 
