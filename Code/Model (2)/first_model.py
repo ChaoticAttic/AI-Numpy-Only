@@ -13,7 +13,7 @@ model = init_layers(nn_architecture)
 
 
 
-X, Y = (gen_points(20000))
+X, Y = (gen_points(2000))
 
 print(X.shape)
 print(Y.shape)
@@ -23,11 +23,12 @@ Y = Y.reshape(1, -1)
 print(X.shape)
 print(Y.shape)
 
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=100, learning_rate=0.1)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=30000, learning_rate=0.1)
 
 #with open("Code/Data/model.txt", "w") as f:
  #   f.write(str(params))
 
 np.save("params.npy", params)
 
-print("Die Genauigkeit ist:", accuracity)
+#print("Die Genauigkeit ist:", accuracity)
+#print(costs)

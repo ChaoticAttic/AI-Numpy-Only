@@ -146,5 +146,11 @@ def train(X, Y, nn_architecture, epochs, learning_rate):
         grads_values = full_backward_propagation(Y_hat, Y, cashe, params_values, nn_architecture)
         params_values = update(params_values, grads_values, nn_architecture, learning_rate)
         print("Epoch Nr.", i, "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy)
-        
+       
+    print("Yhatmin:", Y_hat.min())
+    print("Yhatmax:", Y_hat.max())
+    print("Yhatmean", Y_hat.mean())
+    for key in params_values:
+        print("Key:", key)
+        print("paramsvaluekey:", params_values[key])
     return params_values, cost_history, accuracy_history
