@@ -26,7 +26,7 @@ Y = Y.reshape(1, -1)
 print(X.shape)
 print(Y.shape)
 
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=50000, learning_rate=0.015)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=40000, learning_rate=0.015)
 
 #with open("Code/Data/model.txt", "w") as f:
  #   f.write(str(params))

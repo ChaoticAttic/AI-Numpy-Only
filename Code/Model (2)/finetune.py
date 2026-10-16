@@ -1,6 +1,7 @@
 from main import train
 from main import init_layers
 from data_gen import gen_points
+from data_gen import gen_close_points
 import numpy as np
 import json
 from datetime import datetime
@@ -10,13 +11,13 @@ with open("architecture.json", "r") as f:
 
 
 
-params_values = np.load(
+model = np.load(
     "params.npy",
     allow_pickle=True
 ).item()
 
 
-X, Y = (gen_points(1700))
+X, Y = (gen_close_points(1000))
 
 print(X.shape)
 print(Y.shape)
@@ -28,7 +29,7 @@ Y = Y.reshape(1, -1)
 print(X.shape)
 print(Y.shape)
 
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=50000, learning_rate=0.015)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=1000, learning_rate=0.005, params_values=model)
 
 #with open("Code/Data/model.txt", "w") as f:
  #   f.write(str(params))

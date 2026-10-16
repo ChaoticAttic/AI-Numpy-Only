@@ -131,8 +131,9 @@ def update(params_values, grads_values, nn_architecture, learning_rate):
 
     return params_values;
 
-def train(X, Y, nn_architecture, epochs, learning_rate):
-    params_values = init_layers(nn_architecture, 2)
+def train(X, Y, nn_architecture, epochs, learning_rate, params_values=None):
+    if params_values is None:
+        params_values = init_layers(nn_architecture, 2)
     cost_history = []
     accuracy_history = []
     

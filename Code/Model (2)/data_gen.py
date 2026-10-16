@@ -33,7 +33,7 @@ def gen_points(amount):
 
     return np.array(points_X), np.array(points_Y)
 
-def gen_close_points(amaount):
+def gen_close_points(amount):
     points_X = []
     points_Y = []
 
