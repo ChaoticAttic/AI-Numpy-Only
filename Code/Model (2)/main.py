@@ -1,5 +1,6 @@
 import numpy as np
 import json
+from data_gen import gen_mixed_points
 
 with open("architecture.json", "r") as f:
     nn_architecture = json.load(f)
@@ -131,9 +132,8 @@ def update(params_values, grads_values, nn_architecture, learning_rate):
 
     return params_values;
 
-def train(X, Y, nn_architecture, epochs, learning_rate, params_values=None):
-    if params_values is None:
-        params_values = init_layers(nn_architecture, 2)
+def train(X, Y, nn_architecture, epochs, learning_rate):
+    params_values = init_layers(nn_architecture, 2)
     cost_history = []
     accuracy_history = []
     
@@ -146,7 +146,8 @@ def train(X, Y, nn_architecture, epochs, learning_rate, params_values=None):
         
         grads_values = full_backward_propagation(Y_hat, Y, cashe, params_values, nn_architecture)
         params_values = update(params_values, grads_values, nn_architecture, learning_rate)
-        print("Epoch Nr.", i, "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy)
+        if i % 1000 == 0:
+            print("Epoch Nr.", i, "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy, "bei loss:", cost)
        
     print("Yhatmin:", Y_hat.min())
     print("Yhatmax:", Y_hat.max())
@@ -154,4 +155,55 @@ def train(X, Y, nn_architecture, epochs, learning_rate, params_values=None):
     for key in params_values:
         print("Key:", key)
         print("paramsvaluekey:", params_values[key])
+    return params_values, cost_history, accuracy_history
+
+def tune(X, Y, nn_architecture, epochs, learning_rate, params_values):
+    cost_history = []
+    accuracy_history = []
+    
+    for i in range(epochs):
+        Y_hat, cashe = full_forward_propagation(X, params_values, nn_architecture)
+        cost = get_cost_value(Y_hat, Y)
+        cost_history.append(cost)
+        accuracy = get_accuracy_value(Y_hat, Y)
+        accuracy_history.append(accuracy)
+        
+        grads_values = full_backward_propagation(Y_hat, Y, cashe, params_values, nn_architecture)
+        params_values = update(params_values, grads_values, nn_architecture, learning_rate)
+    #print("Epoch Nr.",epochs , "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy)    
+       
+    print("Yhatmin:", Y_hat.min())
+    print("Yhatmax:", Y_hat.max())
+    print("Yhatmean", Y_hat.mean())
+    return params_values, cost_history, accuracy_history
+
+def tune_with_synth_data(nn_architecture, epochs, data_size, bias, learning_rate, params_values):
+    cost_history = []
+    accuracy_history = []
+    X_Test, Y_Test = gen_mixed_points(data_size, bias)
+
+    X_Test = X_Test.T
+    Y_Test = Y_Test.reshape(1, -1)
+    
+    for i in range(epochs):
+        X, Y = gen_mixed_points(data_size, bias)
+        X = X.T
+        Y = Y.reshape(1, -1)
+        Y_hat, cashe = full_forward_propagation(X, params_values, nn_architecture)
+        cost = get_cost_value(Y_hat, Y)
+        cost_history.append(cost)
+        accuracy = get_accuracy_value(Y_hat, Y)
+        accuracy_history.append(accuracy)
+        
+        grads_values = full_backward_propagation(Y_hat, Y, cashe, params_values, nn_architecture)
+        params_values = update(params_values, grads_values, nn_architecture, learning_rate)
+        if i % 100 == 0:
+            Y_hat_Test, cashe = full_forward_propagation(X_Test, params_values, nn_architecture)
+            cost_test = get_cost_value(Y_hat_Test, Y_Test)
+            accuracy_test = get_accuracy_value(Y_hat_Test, Y_Test)
+            print("Epoch Nr.",i , "abgeschlossen. Genauigkeit:", accuracy_test, "Loss:", cost_test)    
+       
+    print("Yhatmin:", Y_hat.min())
+    print("Yhatmax:", Y_hat.max())
+    print("Yhatmean", Y_hat.mean())
     return params_values, cost_history, accuracy_history

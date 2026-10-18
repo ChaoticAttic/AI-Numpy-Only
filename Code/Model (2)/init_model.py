@@ -1,6 +1,6 @@
 from main import train
 from main import init_layers
-from data_gen import gen_points
+from data_gen import gen_mixed_points
 import numpy as np
 import json
 from datetime import datetime
@@ -14,19 +14,17 @@ model = init_layers(nn_architecture)
 
 
 
-X, Y = (gen_points(1700))
+X, Y = (gen_mixed_points(2000, 1))
 
-print(X.shape)
-print(Y.shape)
+
 
 X = X.T
 Y = Y.reshape(1, -1)
 
+print(np.max(X))
+print(np.sum(Y) / len(Y))
 
-print(X.shape)
-print(Y.shape)
-
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=40000, learning_rate=0.015)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=20000, learning_rate=0.01)
 
 #with open("Code/Data/model.txt", "w") as f:
  #   f.write(str(params))

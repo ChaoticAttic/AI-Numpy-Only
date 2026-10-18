@@ -1,0 +1,252 @@
+
+===== MODELLTEST =====
+Accuracy : 0.9175
+Cost     : 0.2407443485805268
+
+===== OUTPUTS =====
+Yhat min : 1.1220217468225078e-35
+Yhat max : 0.9999999446631982
+Yhat mean: 0.49299662039439446
+
+===== MODELLTEST =====
+Accuracy : 0.906
+Cost     : 0.24565765297684708
+
+===== OUTPUTS =====
+Yhat min : 1.3972659252888875e-36
+Yhat max : 0.9999999411995649
+Yhat mean: 0.4877467024716089
+
+===== MODELLTEST =====
+Accuracy : 0.91375
+Cost     : 0.24635153970169746
+
+===== OUTPUTS =====
+Yhat min : 3.3163848431791686e-39
+Yhat max : 0.9999999583387955
+Yhat mean: 0.5048008567448344
+
+===== MODELLTEST =====
+Accuracy : 0.917
+Cost     : 0.24590067407833496
+
+===== OUTPUTS =====
+Yhat min : 4.146868506984391e-39
+Yhat max : 0.9999999716743678
+Yhat mean: 0.5076309605537652
+
+===== MODELLTEST =====
+Accuracy : 0.91
+Cost     : 0.25319989155585026
+
+===== OUTPUTS =====
+Yhat min : 2.9004429250210216e-38
+Yhat max : 0.9999999692963355
+Yhat mean: 0.4983006627577124
+
+===== MODELLTEST =====
+Accuracy : 0.9195
+Cost     : 0.23713940434053996
+
+===== OUTPUTS =====
+Yhat min : 6.1130331546122364e-37
+Yhat max : 0.9999999780473288
+Yhat mean: 0.510792232571405
+
+===== MODELLTEST =====
+Accuracy : 0.9235
+Cost     : 0.2398116614480651
+
+===== OUTPUTS =====
+Yhat min : 4.680610778648107e-36
+Yhat max : 0.9999999635595924
+Yhat mean: 0.5061869182578941
+
+===== MODELLTEST =====
+Accuracy : 0.918
+Cost     : 0.24366114091756208
+
+===== OUTPUTS =====
+Yhat min : 4.9798900003679464e-37
+Yhat max : 0.9999999785105769
+Yhat mean: 0.512059687200974
+
+===== MODELLTEST =====
+Accuracy : 0.922925
+Cost     : 0.2432749435006671
+
+===== OUTPUTS =====
+Yhat min : 1.4868729476779566e-39
+Yhat max : 0.999999986710042
+Yhat mean: 0.5056192755212975
+
+===== MODELLTEST =====
+Accuracy : 0.847726
+Cost     : 0.4566412893765586
+
+===== OUTPUTS =====
+Yhat min : 1.6299834491067753e-05
+Yhat max : 0.9997756302250619
+Yhat mean: 0.49949561136583265
+
+===== MODELLTEST =====
+Accuracy : 0.861163
+Cost     : 0.4284724242555918
+
+===== OUTPUTS =====
+Yhat min : 1.3980057919202311e-06
+Yhat max : 0.9999677779295126
+Yhat mean: 0.48851693990438616
+
+===== MODELLTEST =====
+Accuracy : 0.848248
+Cost     : 0.4290044010605273
+
+===== OUTPUTS =====
+Yhat min : 1.229054432206812e-06
+Yhat max : 0.9999727979182089
+Yhat mean: 0.5220012870885443
+
+===== MODELLTEST =====
+Accuracy : 0.505471
+Cost     : 0.692373452711699
+
+===== OUTPUTS =====
+Yhat min : 0.4790601977382349
+Yhat max : 0.5118690569077081
+Yhat mean: 0.48758029293972893
+
+===== MODELLTEST =====
+Accuracy : 0.624985
+Cost     : 0.6044855865266094
+
+===== OUTPUTS =====
+Yhat min : 0.025804580345798227
+Yhat max : 0.8661217384810668
+Yhat mean: 0.5421425646787649
+
+===== MODELLTEST =====
+Accuracy : 0.656279
+Cost     : 0.5695949986339272
+
+===== OUTPUTS =====
+Yhat min : 0.0013171320370638786
+Yhat max : 0.9590454315266885
+Yhat mean: 0.5878296360796083
+
+===== MODELLTEST =====
+Accuracy : 0.744752
+Cost     : 0.5356434762696184
+
+===== OUTPUTS =====
+Yhat min : 0.0009336208440824697
+Yhat max : 0.9696718371679919
+Yhat mean: 0.4916625346393572
+
+===== MODELLTEST =====
+Accuracy : 0.759917
+Cost     : 0.5329831597061534
+
+===== OUTPUTS =====
+Yhat min : 0.0007830682672925241
+Yhat max : 0.9736718210692126
+Yhat mean: 0.5000597808371969
+
+===== MODELLTEST =====
+Accuracy : 0.774325
+Cost     : 0.506836506288352
+
+===== OUTPUTS =====
+Yhat min : 0.00010783574737784341
+Yhat max : 0.992915434683162
+Yhat mean: 0.5006906179694343
+
+===== MODELLTEST =====
+Accuracy : 0.993864
+Cost     : 0.06592808648908254
+
+===== OUTPUTS =====
+Yhat min : 1.775897106625482e-39
+Yhat max : 0.9999999674494078
+Yhat mean: 0.6564763588279454
+
+===== MODELLTEST =====
+Accuracy : 0.994019
+Cost     : 0.06566253981961738
+
+===== OUTPUTS =====
+Yhat min : 1.5871566402870042e-39
+Yhat max : 0.9999999678148389
+Yhat mean: 0.6561935088369243
+
+===== MODELLTEST =====
+Accuracy : 0.993875
+Cost     : 0.06591302678956129
+
+===== OUTPUTS =====
+Yhat min : 1.8322899051012142e-39
+Yhat max : 0.9999999678148389
+Yhat mean: 0.6561911108018258
+
+===== MODELLTEST =====
+Accuracy : 0.965376
+Cost     : 0.08649126204134283
+
+===== OUTPUTS =====
+Yhat min : 1.1144558006237672e-09
+Yhat max : 0.9999999999999911
+Yhat mean: 0.552183734808573
+
+===== MODELLTEST =====
+Accuracy : 0.964227
+Cost     : 0.07689018167402788
+
+===== OUTPUTS =====
+Yhat min : 5.305530967444331e-10
+Yhat max : 0.9999999999999867
+Yhat mean: 0.533829794954843
+
+===== MODELLTEST =====
+Accuracy : 0.512267
+Cost     : 1.0212924615611458
+
+===== OUTPUTS =====
+Yhat min : 0.14606763770991102
+Yhat max : 0.9965840881438446
+Yhat mean: 0.5978073378550295
+
+===== MODELLTEST =====
+Accuracy : 0.579442
+Cost     : 0.7156190265753753
+
+===== OUTPUTS =====
+Yhat min : 0.45666121481905936
+Yhat max : 0.865970588393036
+Yhat mean: 0.5838711235542143
+
+===== MODELLTEST =====
+Accuracy : 0.974043
+Cost     : 0.1623473718064011
+
+===== OUTPUTS =====
+Yhat min : 0.0001827409953205924
+Yhat max : 0.99994195437066
+Yhat mean: 0.543731099837903
+
+===== MODELLTEST =====
+Accuracy : 0.965238
+Cost     : 0.12269412810013584
+
+===== OUTPUTS =====
+Yhat min : 3.5815462643263292e-06
+Yhat max : 0.9999885732653799
+Yhat mean: 0.5524262736119843
+
+===== MODELLTEST =====
+Accuracy : 0.987351
+Cost     : 0.052426840716063565
+
+===== OUTPUTS =====
+Yhat min : 1.5031747221208086e-13
+Yhat max : 0.9999999999999747
+Yhat mean: 0.5362697045064957
