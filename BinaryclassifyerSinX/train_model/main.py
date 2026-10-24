@@ -2,7 +2,7 @@ import numpy as np
 import json
 from sin_gen import gen_sin
 
-with open("architecture.json", "r") as f:
+with open("architecturesin.json", "r") as f:
     nn_architecture = json.load(f)
 
 def init_layers(nn_architecture, seed = 99):
@@ -157,11 +157,20 @@ def train(X, Y, nn_architecture, epochs, learning_rate):
         print("paramsvaluekey:", params_values[key])
     return params_values, cost_history, accuracy_history
 
-def tune(X, Y, nn_architecture, epochs, learning_rate, params_values):
+def tune(nn_architecture, epochs, data_size, learning_rate, params_values):
     cost_history = []
     accuracy_history = []
+    Xtest, Ytest = gen_sin(5000)
+
+    Xtest = Xtest.T
+    Ytest = Ytest.reshape(1, -1)
     
     for i in range(epochs):
+        X, Y = gen_sin(5000)
+
+        X = X.T
+        Y = Y.reshape(1, -1)
+
         Y_hat, cashe = full_forward_propagation(X, params_values, nn_architecture)
         cost = get_cost_value(Y_hat, Y)
         cost_history.append(cost)
@@ -170,7 +179,10 @@ def tune(X, Y, nn_architecture, epochs, learning_rate, params_values):
         
         grads_values = full_backward_propagation(Y_hat, Y, cashe, params_values, nn_architecture)
         params_values = update(params_values, grads_values, nn_architecture, learning_rate)
-    #print("Epoch Nr.",epochs , "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy)    
+        if i % 100 == 0:
+            Ytest_hat, _ = full_forward_propagation(Xtest, params_values, nn_architecture)
+            accuracy_test = get_accuracy_value(Ytest_hat, Ytest)
+            print("Epoch Nr.",i , "abgeschlossen. Die aktuelle genauigkeit betraegt:", accuracy_test)    
        
     print("Yhatmin:", Y_hat.min())
     print("Yhatmax:", Y_hat.max())

@@ -5,7 +5,7 @@ import numpy as np
 import json
 from datetime import datetime
 
-with open("/workspaces/AI-Numpy-Only/BinaryclassifyerSinX/saved_data/architecturesin.json", "r") as f:
+with open("architecturesin.json", "r") as f:
     nn_architecture = json.load(f)
 
 

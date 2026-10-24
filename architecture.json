@@ -5,7 +5,7 @@
         "activation": "relu"
     },
     {
-        "input_dim": 16,
+        "input_dim": 27,
         "output_dim": 16,
         "activation": "relu"
     },

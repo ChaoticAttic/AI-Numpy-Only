@@ -7,7 +7,7 @@ import numpy as np
 import json
 from datetime import datetime
 
-with open("architecture.json", "r") as f:
+with open("architecturesin.json", "r") as f:
     nn_architecture = json.load(f)
 
 
@@ -39,7 +39,7 @@ print(
 
 
 #params, costs, accuracity = tune(X, Y, nn_architecture, epochs=100, learning_rate=0.003, params_values=model)
-params, costs, accuracity = tune(nn_architecture=nn_architecture, epochs=10000, data_size=1000, learning_rate=0.003, params_values=model)
+params, costs, accuracity = tune(nn_architecture=nn_architecture, epochs=10000, data_size=1000, learning_rate=0.005, params_values=model)
 
 np.save("params.npy", params)
 
