@@ -39,15 +39,15 @@ print(
 
 
 #params, costs, accuracity = tune(X, Y, nn_architecture, epochs=100, learning_rate=0.003, params_values=model)
-params, costs, accuracity = tune(nn_architecture=nn_architecture, epochs=10000, data_size=1000, learning_rate=0.005, params_values=model)
+params, costs, accuracity = tune(nn_architecture=nn_architecture, epochs=1000, data_size=1000, learning_rate=0.01, params_values=model)
 
-np.save("params.npy", params)
+np.save("sinmodel.npy", params)
 
 with open("Code/Data/stats.txt", "a") as f:
     f.write(f"{datetime.now()}Genauigkeit: {max(accuracity)}\n,\n")
 
 
-Y_hat, _ = full_forward_propagation(X, model, nn_architecture)
+Y_hat, _ = full_forward_propagation(X, params, nn_architecture)
 
 print(
     "Accuracy normal after Tune:",

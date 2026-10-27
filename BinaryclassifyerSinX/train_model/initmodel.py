@@ -24,7 +24,7 @@ Y = Y.reshape(1, -1)
 print(np.max(X))
 print(np.sum(Y) / len(Y))
 
-params, costs, accuracity = train(X, Y, nn_architecture, epochs=20000, learning_rate=0.01)
+params, costs, accuracity = train(X, Y, nn_architecture, epochs=30000, learning_rate=0.008)
 
 #with open("Code/Data/model.txt", "w") as f:
  #   f.write(str(params))

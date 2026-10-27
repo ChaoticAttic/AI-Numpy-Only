@@ -10,7 +10,7 @@ import numpy as np
 with open("architecturesin.json", "r") as f:
     nn_architecture = json.load(f)
 
-X, Y = gen_sin(1000000)
+X, Y = gen_sin(100000)
 
 X = X.T
 Y = Y.reshape(1, -1)
