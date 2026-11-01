@@ -1,0 +1,22 @@
+[
+    {
+        "input_dim": 64,
+        "output_dim": 128,
+        "activation": "rho1"
+    },
+    {
+        "input_dim": 128,
+        "output_dim": 64,
+        "activation": "rho1"
+    },
+    {
+        "input_dim": 64,
+        "output_dim": 64,
+        "activation": "rho1"
+    },
+    {
+        "input_dim": 64,
+        "output_dim": 10,
+        "activation": "softmax"
+    }
+]

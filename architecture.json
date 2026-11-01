@@ -1,13 +1,23 @@
 [
     {
         "input_dim": 2,
-        "output_dim": 16,
-        "activation": "relu"
+        "output_dim": 8,
+        "activation": "custom"
     },
     {
-        "input_dim": 27,
+        "input_dim": 8,
         "output_dim": 16,
-        "activation": "relu"
+        "activation": "nroot"
+    },
+    {
+        "input_dim": 16,
+        "output_dim": 16,
+        "activation": "fvonx"
+    },
+    {
+        "input_dim": 16,
+        "output_dim": 16,
+        "activation": "custom"
     },
     {
         "input_dim": 16,
