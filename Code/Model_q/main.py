@@ -39,10 +39,20 @@ def softmax(Z):
     return exp_Z / np.sum(exp_Z, axis=0, keepdims=True)
 
 
+def softmax_backward(dA, Z):
+    probabilities = softmax(Z)
+    weighted_gradient = np.sum(dA * probabilities, axis=0, keepdims=True)
+    return probabilities * (dA - weighted_gradient)
+
+
 def relu(Z):
     return np.maximum(0,Z)
 def sin(Z):
     return np.sin(Z)
+
+
+def sin_backward(dA, Z):
+    return dA * np.cos(Z)
 
 
 def rho1(Z):
@@ -53,6 +63,8 @@ def rho1(Z):
     result[positive] = (1 + Z[positive]) / (Z[positive] ** 2 + 9)
     return result
 
+def sin(Z):
+    return np.sin(Z)
 
 def rho1_backward(dA, Z):
     derivative = np.empty_like(Z, dtype=float)
@@ -65,6 +77,50 @@ def rho1_backward(dA, Z):
     ) / denominator**2
     return dA * derivative
 
+
+def gelu(Z):
+    coefficient = np.sqrt(2 / np.pi)
+    inner = coefficient * (Z + 0.044715 * Z**3)
+    return 0.5 * Z * (1 + np.tanh(inner))
+
+
+def gelu_backward(dA, Z):
+    coefficient = np.sqrt(2 / np.pi)
+    inner = coefficient * (Z + 0.044715 * Z**3)
+    inner_derivative = coefficient * (1 + 3 * 0.044715 * Z**2)
+    tanh_inner = np.tanh(inner)
+    derivative = (
+        0.5 * (1 + tanh_inner)
+        + 0.5 * Z * (1 - tanh_inner**2) * inner_derivative
+    )
+    return dA * derivative
+
+
+def mish(Z):
+    softplus_Z = np.logaddexp(0, Z)
+    return Z * np.tanh(softplus_Z)
+
+
+def mish_backward(dA, Z):
+    softplus_Z = np.logaddexp(0, Z)
+    tanh_softplus = np.tanh(softplus_Z)
+    sigmoid_Z = sigmoid(Z)
+    derivative = (
+        tanh_softplus
+        + Z * sigmoid_Z * (1 - tanh_softplus**2)
+    )
+    return dA * derivative
+
+
+def softsign(Z):
+    return Z / (1 + np.abs(Z))
+
+
+def softsign_backward(dA, Z):
+    return dA / (1 + np.abs(Z))**2
+
+def sin_backwards(dA, Z):
+    return dA * np.cos(Z)
 
 def swish_gaussian(Z):
     sigmoid_Z = sigmoid(Z)
@@ -335,8 +391,16 @@ def single_layer_forward_propagation(A_prev, W_curr, b_curr, activation="relu"):
         activation_func = peir
     elif activation == "rho1":
         activation_func = rho1
+    elif activation == "gelu":
+        activation_func = gelu
+    elif activation == "mish":
+        activation_func = mish
+    elif activation == "softsign":
+        activation_func = softsign
     elif activation == "arctan_wave":
         activation_func = arctan_wave
+    elif activation == "sin":
+        activation_func = sin
     elif activation == "wrapped_exp_cos":
         activation_func = wrapped_exp_cos
     elif activation == "cubic_exp_tan":
@@ -396,6 +460,8 @@ def single_layer_backward_propagation(dA_curr, W_curr, b_curr, Z_curr, A_prev, a
         backward_activation_func = relu_backward
     elif activation == "sigmoid":
         backward_activation_func = sigmoid_backward
+    elif activation == "softmax":
+        backward_activation_func = softmax_backward
     elif activation == "fvonx":
         backward_activation_func = fvonx_backward
     elif activation == "nroot":
@@ -408,8 +474,16 @@ def single_layer_backward_propagation(dA_curr, W_curr, b_curr, Z_curr, A_prev, a
         backward_activation_func = softplus_wave_backward
     elif activation == "peir":
         backward_activation_func = peir_backward
+    elif activation == "sin":
+        backward_activation_func = sin_backward
     elif activation == "rho1":
         backward_activation_func = rho1_backward
+    elif activation == "gelu":
+        backward_activation_func = gelu_backward
+    elif activation == "mish":
+        backward_activation_func = mish_backward
+    elif activation == "softsign":
+        backward_activation_func = softsign_backward
     elif activation == "arctan_wave":
         backward_activation_func = arctan_wave_backward
     elif activation == "wrapped_exp_cos":
@@ -488,8 +562,16 @@ def full_backward_propagation_multiclass(
                 dZ_curr = softplus_wave_backward(dA_prev, Z_prev)
             elif previous_layer["activation"] == "peir":
                 dZ_curr = peir_backward(dA_prev, Z_prev)
+            elif previous_layer["activation"] == "sin":
+                dZ_curr = sin_backward(dA_prev, Z_prev)
             elif previous_layer["activation"] == "rho1":
                 dZ_curr = rho1_backward(dA_prev, Z_prev)
+            elif previous_layer["activation"] == "gelu":
+                dZ_curr = gelu_backward(dA_prev, Z_prev)
+            elif previous_layer["activation"] == "mish":
+                dZ_curr = mish_backward(dA_prev, Z_prev)
+            elif previous_layer["activation"] == "softsign":
+                dZ_curr = softsign_backward(dA_prev, Z_prev)
             elif previous_layer["activation"] == "arctan_wave":
                 dZ_curr = arctan_wave_backward(dA_prev, Z_prev)
             elif previous_layer["activation"] == "wrapped_exp_cos":

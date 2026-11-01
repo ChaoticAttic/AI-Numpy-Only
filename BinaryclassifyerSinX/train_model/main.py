@@ -28,6 +28,12 @@ def sigmoid(Z):
 def relu(Z):
     return np.maximum(0,Z)
 
+def sin(Z):
+    return np.sin(Z)
+
+def sin_backward(dA, Z):
+    return dA * np.cos(Z)
+
 def sigmoid_backward(dA, Z):
     sig = sigmoid(Z)
     return dA * sig * (1 - sig)
@@ -44,6 +50,8 @@ def single_layer_forward_propagation(A_prev, W_curr, b_curr, activation="relu"):
         activation_func = relu
     elif activation == "sigmoid":
         activation_func = sigmoid
+    elif activation == "sin":
+        activation_func = sin
     else:
         raise Exception('Non-supported activation function')
         
@@ -88,6 +96,8 @@ def single_layer_backward_propagation(dA_curr, W_curr, b_curr, Z_curr, A_prev, a
         backward_activation_func = relu_backward
     elif activation == "sigmoid":
         backward_activation_func = sigmoid_backward
+    elif activation == "sin":
+        backward_activation_func = sin_backward
     else:
         raise Exception('Non-supported activation function')
     

@@ -16,7 +16,7 @@ with open(Path(__file__).with_name("architecture_mnist.json"), "r") as file:
 
 X_train, Y_train, X_test, Y_test = load_mnist_8x8()
 params, costs, accuracies = train_multiclass(
-    X_train, Y_train, architecture, epochs=200, learning_rate=0.1
+    X_train, Y_train, architecture, epochs=5000,learning_rate=0.01
 )
 
 Y_test_hat, _ = full_forward_propagation(X_test, params, architecture)
