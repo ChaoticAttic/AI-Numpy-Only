@@ -1,0 +1,13 @@
+[
+    {
+        "input_dim": 64,
+        "output_dim": 5,
+        "activation": "sin"
+    },
+
+    {
+        "input_dim": 5,
+        "output_dim": 10,
+        "activation": "softmax"
+    }
+]

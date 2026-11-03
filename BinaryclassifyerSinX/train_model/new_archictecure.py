@@ -2,8 +2,8 @@ import json
 
 
 nn_architecture = [
-    {"input_dim": 2, "output_dim": 64, "activation": "relu"},
-    {"input_dim": 64, "output_dim": 16, "activation": "relu"},
+    {"input_dim": 2, "output_dim": 64, "activation": "sin"},
+    {"input_dim": 64, "output_dim": 16, "activation": "sin"},
     {"input_dim": 16, "output_dim": 1, "activation": "sigmoid"},
 ]
 
